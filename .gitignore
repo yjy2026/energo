@@ -1,0 +1,30 @@
+# Data & checkpoints
+data/
+checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environment
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# uv
+uv.lock
+
+# Test artifacts
+.coverage
+.pytest_cache/
+htmlcov/
