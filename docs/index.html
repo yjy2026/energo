@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>energo — Energy-Aware AI Workload Optimizer</title>
+    <meta name="description" content="JEPX electricity price forecasting and CVaR-based workload scheduling for AI infrastructure. Save up to 41% on GPU compute electricity costs.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hero -->
+    <header id="header">
+        <div class="header-left">
+            <h1>⚡ energo</h1>
+            <span class="badge">DEMO</span>
+        </div>
+        <div class="header-right">
+            <a href="https://github.com/yjy2026/energo" class="btn btn-ghost" target="_blank">GitHub ↗</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h2>Energy-Aware AI Workload Optimization</h2>
+            <p>Predict JEPX electricity prices. Schedule GPU workloads at optimal times. Save up to <strong>41%</strong> on compute costs.</p>
+            <div class="hero-badges">
+                <span class="hero-stat">96.3% Spike Detection</span>
+                <span class="hero-stat">41.6% Cost Reduction</span>
+                <span class="hero-stat">62K Param Model</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- KPI Cards -->
+    <section id="kpi-section" class="kpi-grid">
+        <div class="card kpi-card">
+            <div class="kpi-label">Latest Price</div>
+            <div class="kpi-value" id="kpi-price">—</div>
+            <div class="kpi-unit">JPY/kWh</div>
+        </div>
+        <div class="card kpi-card">
+            <div class="kpi-label">24h Average</div>
+            <div class="kpi-value" id="kpi-avg">—</div>
+            <div class="kpi-unit">JPY/kWh</div>
+        </div>
+        <div class="card kpi-card">
+            <div class="kpi-label">Volatility</div>
+            <div class="kpi-value" id="kpi-vol">—</div>
+            <div class="kpi-unit">σ</div>
+        </div>
+        <div class="card kpi-card">
+            <div class="kpi-label">Trend</div>
+            <div class="kpi-value" id="kpi-trend">—</div>
+            <div class="kpi-unit" id="kpi-trend-label">7d</div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-grid">
+        <!-- Price Forecast Chart -->
+        <section class="card chart-card" id="chart-section">
+            <div class="card-header">
+                <h2>📈 Price Forecast</h2>
+                <div class="chart-controls">
+                    <button class="btn btn-sm" data-hours="12">12h</button>
+                    <button class="btn btn-sm active" data-hours="24">24h</button>
+                    <button class="btn btn-sm" data-hours="48">48h</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="forecast-chart"></canvas>
+            </div>
+            <div class="chart-footer">
+                <span>🟢 Predicted Price (μ)</span>
+                <span>🔵 90% Confidence Band (±1.645σ)</span>
+            </div>
+        </section>
+
+        <!-- Schedule Demo -->
+        <section class="card scheduler-card" id="scheduler-section">
+            <div class="card-header">
+                <h2>🔧 Schedule Result</h2>
+            </div>
+            <div class="workload-info">
+                <div class="workload-name" id="wl-name">A100 GPU Training (x4)</div>
+                <div class="workload-meta">
+                    <span id="wl-duration">4h</span> · <span id="wl-power">10 kW</span> · <span id="wl-energy">40 kWh</span>
+                </div>
+            </div>
+
+            <div id="schedule-result" class="schedule-result">
+                <div class="result-header">
+                    <span class="result-icon">✅</span>
+                    <span class="result-title">Optimal Schedule Found</span>
+                </div>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-label">Start In</span>
+                        <span class="result-value" id="result-start">—</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Cost Now</span>
+                        <span class="result-value dim" id="result-baseline">—</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Optimized Cost</span>
+                        <span class="result-value accent" id="result-cost">—</span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">Savings</span>
+                        <span class="result-value savings" id="result-savings">—</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">CVaR (Tail Risk)</span>
+                        <span class="result-value" id="result-cvar">—</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Risk-Adjusted (α=0.3)</span>
+                        <span class="result-value" id="result-risk-adj">—</span>
+                    </div>
+                </div>
+                <p class="recommendation" id="result-recommendation"></p>
+            </div>
+
+            <!-- Strategy Comparison -->
+            <div class="strategy-section">
+                <h3>📊 Strategy Comparison</h3>
+                <div class="strategy-table" id="strategy-table"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Architecture Section -->
+    <section class="card arch-card" id="arch-section">
+        <h2>Architecture</h2>
+        <div class="arch-flow">
+            <div class="arch-step">
+                <div class="arch-icon">📊</div>
+                <div class="arch-label">JEPX Data</div>
+                <div class="arch-detail">16 years · 280K+ rows</div>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-step">
+                <div class="arch-icon">🧠</div>
+                <div class="arch-label">LSTM (μ, σ)</div>
+                <div class="arch-detail">Probabilistic Forecast</div>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-step">
+                <div class="arch-icon">⚖️</div>
+                <div class="arch-label">CVaR Scheduler</div>
+                <div class="arch-detail">Risk-Adjusted Cost</div>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-step">
+                <div class="arch-icon">🤖</div>
+                <div class="arch-label">MCP Server</div>
+                <div class="arch-detail">5 Tools for AI Agents</div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <span>energo — Built with PyTorch, FastMCP, and Chart.js</span>
+        <span>Static demo · <a href="https://github.com/yjy2026/energo">View source</a></span>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

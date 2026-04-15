@@ -1,0 +1,312 @@
+/* ── energo Static Dashboard — Dark Theme ──────────────────── */
+
+:root {
+    --bg-primary: #0a0e17;
+    --bg-card: rgba(16, 22, 36, 0.85);
+    --border: rgba(255, 255, 255, 0.06);
+    --text-primary: #e8ecf4;
+    --text-secondary: #8892a6;
+    --text-dim: #5a6478;
+    --accent: #00d4aa;
+    --accent-glow: rgba(0, 212, 170, 0.15);
+    --danger: #ff6b6b;
+    --warn: #ffc857;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 14, 23, 0.8);
+}
+
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-left h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+
+.badge {
+    background: var(--warn);
+    color: #000;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+    padding: 60px 32px 48px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(0,212,170,0.04) 0%, transparent 100%);
+}
+
+.hero h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 24px;
+}
+.hero strong { color: var(--accent); }
+
+.hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.hero-stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 8px 18px;
+    border-radius: 24px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn {
+    border: none;
+    cursor: pointer;
+    font-family: var(--font);
+    font-weight: 500;
+    transition: all var(--transition);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    border: 1px solid var(--border);
+}
+.btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
+
+.btn-sm {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    border: 1px solid var(--border);
+}
+.btn-sm.active, .btn-sm:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+}
+
+/* ── KPI Cards ────────────────────────────────────────────── */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 0 32px;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(12px);
+    transition: all var(--transition);
+}
+.card:hover { border-color: rgba(255, 255, 255, 0.1); }
+
+.kpi-card { padding: 20px 24px; text-align: center; }
+.kpi-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.kpi-value { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; }
+.kpi-unit { font-size: 0.7rem; color: var(--text-dim); margin-top: 2px; }
+
+/* ── Main Layout ──────────────────────────────────────────── */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 16px;
+    padding: 16px 32px;
+}
+
+/* ── Chart ────────────────────────────────────────────────── */
+.chart-card { padding: 24px; }
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.card-header h2 { font-size: 1.1rem; font-weight: 600; }
+.chart-controls { display: flex; gap: 6px; }
+.chart-container { position: relative; height: 320px; }
+.chart-footer {
+    display: flex;
+    gap: 20px;
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* ── Scheduler ────────────────────────────────────────────── */
+.scheduler-card { padding: 24px; }
+
+.workload-info {
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+.workload-name { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.workload-meta { font-size: 0.8rem; color: var(--text-secondary); }
+
+.schedule-result {
+    padding: 20px;
+    background: rgba(0, 212, 170, 0.04);
+    border: 1px solid rgba(0, 212, 170, 0.15);
+    border-radius: var(--radius-sm);
+}
+
+.result-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.result-icon { font-size: 1.2rem; }
+.result-title { font-weight: 600; font-size: 0.95rem; }
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+.result-item.highlight {
+    background: var(--accent-glow);
+    border: 1px solid rgba(0, 212, 170, 0.2);
+}
+.result-label { font-size: 0.65rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; }
+.result-value { font-size: 1.05rem; font-weight: 600; }
+.result-value.dim { color: var(--text-secondary); text-decoration: line-through; }
+.result-value.accent { color: var(--accent); }
+.result-value.savings { color: var(--accent); font-size: 1.2rem; }
+
+.recommendation {
+    margin-top: 14px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+}
+
+/* ── Strategy Table ───────────────────────────────────────── */
+.strategy-section { margin-top: 20px; }
+.strategy-section h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; }
+
+.strategy-table {
+    display: grid;
+    gap: 8px;
+}
+.strategy-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    align-items: center;
+}
+.strategy-row.header {
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: transparent;
+}
+.strategy-name { font-weight: 600; }
+.strategy-name .alpha { color: var(--text-dim); font-weight: 400; }
+
+/* ── Architecture ─────────────────────────────────────────── */
+.arch-card {
+    margin: 0 32px 16px;
+    padding: 32px;
+}
+.arch-card h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 24px; text-align: center; }
+
+.arch-flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.arch-step {
+    text-align: center;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    min-width: 140px;
+}
+.arch-icon { font-size: 1.8rem; margin-bottom: 6px; }
+.arch-label { font-size: 0.9rem; font-weight: 600; }
+.arch-detail { font-size: 0.7rem; color: var(--text-dim); margin-top: 2px; }
+.arch-arrow { font-size: 1.4rem; color: var(--text-dim); }
+
+/* ── Footer ───────────────────────────────────────────────── */
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 32px;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+}
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .main-grid { grid-template-columns: 1fr; }
+    .arch-flow { flex-direction: column; }
+    .arch-arrow { transform: rotate(90deg); }
+    .hero h2 { font-size: 1.6rem; }
+    header, .kpi-grid, .main-grid, footer, .arch-card { padding-left: 16px; padding-right: 16px; margin-left: 0; margin-right: 0; }
+    .result-grid { grid-template-columns: repeat(2, 1fr); }
+    .strategy-row { grid-template-columns: 1fr 1fr; gap: 4px; font-size: 0.75rem; }
+}
