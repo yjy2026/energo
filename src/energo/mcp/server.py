@@ -50,6 +50,8 @@ _scaler: FeatureScaler | None = None
 _feature_cols: list[str] = []
 _price_data: pd.DataFrame | None = None
 _forecasts_cache: dict[str, list[SlotForecast]] = {}
+_cache_time: float = 0.0
+_CACHE_TTL = 1800.0  # 30 minutes
 
 CHECKPOINT_DIR = Path("checkpoints")
 DATA_DIR = Path("data")
@@ -118,7 +120,16 @@ def _ensure_loaded() -> bool:
 
 
 def _get_forecasts(horizon_slots: int = 48) -> list[SlotForecast]:
-    """Generate price forecasts for the next N slots."""
+    """Generate price forecasts for the next N slots (cached with TTL)."""
+    import time
+
+    global _cache_time, _forecasts_cache
+
+    # Invalidate cache if TTL expired
+    if _cache_time > 0 and (time.time() - _cache_time) > _CACHE_TTL:
+        _forecasts_cache.clear()
+        _cache_time = 0.0
+
     cache_key = f"h{horizon_slots}"
     if cache_key in _forecasts_cache:
         return _forecasts_cache[cache_key]
@@ -148,6 +159,7 @@ def _get_forecasts(horizon_slots: int = 48) -> list[SlotForecast]:
     ]
 
     _forecasts_cache[cache_key] = forecasts
+    _cache_time = time.time()
     return forecasts
 
 
