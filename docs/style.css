@@ -47,13 +47,21 @@ header {
 .header-right { display: flex; align-items: center; gap: 12px; }
 
 .badge {
-    background: var(--warn);
-    color: #000;
     padding: 2px 10px;
     border-radius: 20px;
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.08em;
+}
+.badge-live {
+    background: var(--accent);
+    color: #000;
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
 }
 
 /* ── Hero ─────────────────────────────────────────────────── */

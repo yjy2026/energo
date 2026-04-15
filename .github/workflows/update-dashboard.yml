@@ -1,0 +1,104 @@
+name: Update Dashboard
+
+on:
+  schedule:
+    # Daily at UTC 06:00 (JST 15:00) — after JEPX day-ahead prices are finalized
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: dashboard-update
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Download latest JEPX data
+        run: uv run python scripts/refresh.py --force
+        continue-on-error: true
+
+      - name: Train model (if data updated)
+        run: uv run python scripts/train.py
+        continue-on-error: true
+
+      - name: Export static dashboard data
+        run: |
+          uv run python -c "
+          import json
+          from energo.mcp.server import _ensure_loaded, get_price_forecast, get_market_status, schedule_workload, compare_schedules
+
+          _ensure_loaded()
+
+          exports = {
+              'market': get_market_status(),
+              'forecast_12': get_price_forecast(hours_ahead=12),
+              'forecast_24': get_price_forecast(hours_ahead=24),
+              'forecast_48': get_price_forecast(hours_ahead=48),
+              'schedule_example': schedule_workload(
+                  name='A100 GPU Training (x4)', duration_hours=4.0, power_kw=10.0,
+                  risk_aversion=0.3,
+              ),
+              'compare': compare_schedules(
+                  name='A100 GPU Training (x4)', duration_hours=4.0, power_kw=10.0,
+              ),
+          }
+
+          for key, val in exports.items():
+              with open(f'docs/data/{key}.json', 'w') as f:
+                  json.dump(val, f, indent=2, ensure_ascii=False)
+              print(f'  {key}.json — OK')
+          "
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/
+          if git diff --staged --quiet; then
+            echo "No data changes — skipping commit"
+          else
+            git commit -m "chore: update dashboard data [automated]"
+            git push
+          fi
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main  # Get the latest commit (including data update)
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
