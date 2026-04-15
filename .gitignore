@@ -1,6 +1,6 @@
-# Data & checkpoints
-data/
-checkpoints/
+# Data & checkpoints (root only — docs/data/ is for GitHub Pages)
+/data/
+/checkpoints/
 
 # Python
 __pycache__/

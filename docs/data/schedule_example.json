@@ -1,0 +1,57 @@
+{
+  "workload": {
+    "name": "A100 GPU Training (x4)",
+    "duration_hours": 4.0,
+    "power_kw": 10.0,
+    "energy_kwh": 40.0,
+    "priority": "NORMAL"
+  },
+  "optimal_schedule": {
+    "start_slot": 21,
+    "end_slot": 28,
+    "start_hours_from_now": 10.5,
+    "slot_prices": [
+      {
+        "slot": 21,
+        "price": 10.37
+      },
+      {
+        "slot": 22,
+        "price": 9.87
+      },
+      {
+        "slot": 23,
+        "price": 10.06
+      },
+      {
+        "slot": 24,
+        "price": 9.9
+      },
+      {
+        "slot": 25,
+        "price": 9.89
+      },
+      {
+        "slot": 26,
+        "price": 9.35
+      },
+      {
+        "slot": 27,
+        "price": 9.93
+      },
+      {
+        "slot": 28,
+        "price": 10.9
+      }
+    ]
+  },
+  "cost_analysis": {
+    "predicted_cost_jpy": 401.4,
+    "baseline_cost_jpy": 589.3,
+    "savings_jpy": 187.9,
+    "savings_pct": 31.9,
+    "cvar_cost_jpy": 452.3,
+    "risk_adjusted_cost_jpy": 416.6
+  },
+  "recommendation": "Run 'A100 GPU Training (x4)' starting in 10.5 hours to save ¥188 (32%) vs running now."
+}
