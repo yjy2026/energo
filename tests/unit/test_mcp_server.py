@@ -12,7 +12,6 @@ import numpy as np
 import pytest
 
 from energo.mcp.server import (
-    _forecasts_cache,
     compare_schedules,
     estimate_cost,
     get_market_status,
@@ -38,21 +37,16 @@ def _mock_forecasts(n: int = 96) -> list[SlotForecast]:
 
 @pytest.fixture(autouse=True)
 def _setup_mock_forecasts():
-    """Inject mock forecasts into the cache for all tests."""
+    """Inject mock forecasts into the base forecast cache for all tests."""
+    import energo.mcp.server as srv
+
     mock = _mock_forecasts(144)  # 3 days
-    # Populate cache with various horizon keys
-    _forecasts_cache.clear()
-    _forecasts_cache["h48"] = mock[:48]
-    _forecasts_cache["h96"] = mock[:96]
-    _forecasts_cache["h144"] = mock[:144]
-    _forecasts_cache["h58"] = mock[:58]
-    _forecasts_cache["h52"] = mock[:52]
-    _forecasts_cache["h54"] = mock[:54]
-    _forecasts_cache["h14"] = mock[:14]
-    _forecasts_cache["h50"] = mock[:50]
-    _forecasts_cache["h10"] = mock[:10]
+    srv._base_forecasts.clear()
+    srv._base_forecasts.extend(mock)
+    srv._cache_time = 1e18  # Far future — never expire during tests
     yield
-    _forecasts_cache.clear()
+    srv._base_forecasts.clear()
+    srv._cache_time = 0.0
 
 
 class TestGetPriceForecast:

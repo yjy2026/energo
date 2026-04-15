@@ -49,7 +49,6 @@ _model: ParametricPriceModel | None = None
 _scaler: FeatureScaler | None = None
 _feature_cols: list[str] = []
 _price_data: pd.DataFrame | None = None
-_forecasts_cache: dict[str, list[SlotForecast]] = {}
 _cache_time: float = 0.0
 _CACHE_TTL = 1800.0  # 30 minutes
 
@@ -119,48 +118,53 @@ def _ensure_loaded() -> bool:
     return True
 
 
+_MAX_HORIZON = 144  # 72 hours — always generate full forecast once
+_base_forecasts: list[SlotForecast] = []
+
+
 def _get_forecasts(horizon_slots: int = 48) -> list[SlotForecast]:
-    """Generate price forecasts for the next N slots (cached with TTL)."""
+    """Generate price forecasts for the next N slots (cached with TTL).
+
+    Always generates the full 72h forecast once and slices from it,
+    ensuring consistent predictions across different horizon requests.
+    """
     import time
 
-    global _cache_time, _forecasts_cache
+    global _cache_time, _base_forecasts
 
     # Invalidate cache if TTL expired
     if _cache_time > 0 and (time.time() - _cache_time) > _CACHE_TTL:
-        _forecasts_cache.clear()
+        _base_forecasts.clear()
         _cache_time = 0.0
 
-    cache_key = f"h{horizon_slots}"
-    if cache_key in _forecasts_cache:
-        return _forecasts_cache[cache_key]
+    # Generate base forecast if not cached
+    if not _base_forecasts:
+        if not _ensure_loaded() or _price_data is None or _scaler is None or _model is None:
+            return []
 
-    if not _ensure_loaded() or _price_data is None or _scaler is None or _model is None:
-        return []
+        recent = _price_data.tail(SEQ_LEN + _MAX_HORIZON + 500).copy().reset_index(drop=True)
+        featured = build_features(recent)
+        featured_clean = featured.dropna(subset=_feature_cols).reset_index(drop=True)
+        scaled = _scaler.transform(featured_clean)
 
-    # Use latest data for prediction
-    recent = _price_data.tail(SEQ_LEN + horizon_slots + 500).copy().reset_index(drop=True)
-    featured = build_features(recent)
-    featured_clean = featured.dropna(subset=_feature_cols).reset_index(drop=True)
-    scaled = _scaler.transform(featured_clean)
+        features_t = torch.tensor(scaled[_feature_cols].values, dtype=torch.float32)
+        targets_t = torch.tensor(scaled["price"].values, dtype=torch.float32)
 
-    features_t = torch.tensor(scaled[_feature_cols].values, dtype=torch.float32)
-    targets_t = torch.tensor(scaled["price"].values, dtype=torch.float32)
+        seqs, _tgts = create_sequences(features_t, targets_t, seq_len=SEQ_LEN)
 
-    seqs, _tgts = create_sequences(features_t, targets_t, seq_len=SEQ_LEN)
+        with torch.no_grad():
+            pred = _model(seqs[-_MAX_HORIZON:])
+            mu = pred["mu"].numpy()
+            sigma = pred["sigma"].numpy()
 
-    with torch.no_grad():
-        pred = _model(seqs[-horizon_slots:])
-        mu = pred["mu"].numpy()
-        sigma = pred["sigma"].numpy()
+        _base_forecasts = [
+            SlotForecast(slot_index=i, mu=float(mu[i]), sigma=float(sigma[i]))
+            for i in range(len(mu))
+        ]
+        _cache_time = time.time()
 
-    forecasts = [
-        SlotForecast(slot_index=i, mu=float(mu[i]), sigma=float(sigma[i]))
-        for i in range(len(mu))
-    ]
+    return _base_forecasts[:horizon_slots]
 
-    _forecasts_cache[cache_key] = forecasts
-    _cache_time = time.time()
-    return forecasts
 
 
 # ── MCP Tools ────────────────────────────────────────────────

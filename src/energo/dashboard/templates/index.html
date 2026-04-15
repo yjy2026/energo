@@ -54,8 +54,8 @@
             <div class="card-header">
                 <h2>📈 Price Forecast</h2>
                 <div class="chart-controls">
-                    <button class="btn btn-sm active" data-hours="12">12h</button>
-                    <button class="btn btn-sm" data-hours="24">24h</button>
+                    <button class="btn btn-sm" data-hours="12">12h</button>
+                    <button class="btn btn-sm active" data-hours="24">24h</button>
                     <button class="btn btn-sm" data-hours="48">48h</button>
                 </div>
             </div>
@@ -124,6 +124,14 @@
                     <div class="result-item highlight">
                         <span class="result-label">Savings</span>
                         <span class="result-value savings" id="result-savings">—</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">CVaR (Tail Risk)</span>
+                        <span class="result-value" id="result-cvar">—</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Risk-Adjusted <span id="result-alpha"></span></span>
+                        <span class="result-value" id="result-risk-adj">—</span>
                     </div>
                 </div>
                 <p class="recommendation" id="result-recommendation"></p>

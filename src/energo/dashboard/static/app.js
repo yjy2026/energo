@@ -2,7 +2,7 @@
 
 // ── State ────────────────────────────────────────────────────
 let forecastChart = null;
-let currentHorizon = 24;
+let currentHorizon = 24; // Must match the 'active' button in HTML
 
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -222,6 +222,9 @@ async function runScheduler() {
         document.getElementById('result-cost').textContent = `¥${cost.predicted_cost_jpy.toLocaleString()}`;
         document.getElementById('result-savings').textContent =
             `¥${cost.savings_jpy.toLocaleString()} (${cost.savings_pct}%)`;
+        document.getElementById('result-cvar').textContent = `¥${cost.cvar_cost_jpy.toLocaleString()}`;
+        document.getElementById('result-risk-adj').textContent = `¥${cost.risk_adjusted_cost_jpy.toLocaleString()}`;
+        document.getElementById('result-alpha').textContent = `α=${body.risk_aversion}`;
         document.getElementById('result-recommendation').textContent = data.recommendation;
 
         document.getElementById('schedule-result').classList.remove('hidden');
