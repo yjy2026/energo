@@ -4,29 +4,29 @@
     "aggressive": {
       "alpha": 0.0,
       "start_hours_from_now": 0.0,
-      "predicted_cost_jpy": 582.4,
-      "cvar_cost_jpy": 618.3,
+      "predicted_cost_jpy": 580.8,
+      "cvar_cost_jpy": 614.8,
       "savings_pct": 0.0
     },
     "balanced": {
       "alpha": 0.3,
       "start_hours_from_now": 0.0,
-      "predicted_cost_jpy": 582.4,
-      "cvar_cost_jpy": 618.3,
+      "predicted_cost_jpy": 580.8,
+      "cvar_cost_jpy": 614.8,
       "savings_pct": 0.0
     },
     "conservative": {
       "alpha": 0.7,
       "start_hours_from_now": 0.0,
-      "predicted_cost_jpy": 582.4,
-      "cvar_cost_jpy": 618.3,
+      "predicted_cost_jpy": 580.8,
+      "cvar_cost_jpy": 614.8,
       "savings_pct": 0.0
     },
     "max_safety": {
       "alpha": 1.0,
       "start_hours_from_now": 0.0,
-      "predicted_cost_jpy": 582.4,
-      "cvar_cost_jpy": 618.3,
+      "predicted_cost_jpy": 580.8,
+      "cvar_cost_jpy": 614.8,
       "savings_pct": 0.0
     }
   },
