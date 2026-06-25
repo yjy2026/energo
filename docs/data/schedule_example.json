@@ -7,51 +7,51 @@
     "priority": "NORMAL"
   },
   "optimal_schedule": {
-    "start_slot": 3,
-    "end_slot": 10,
-    "start_hours_from_now": 1.5,
+    "start_slot": 10,
+    "end_slot": 17,
+    "start_hours_from_now": 5.0,
     "slot_prices": [
       {
-        "slot": 3,
-        "price": 11.13
-      },
-      {
-        "slot": 4,
-        "price": 11.67
-      },
-      {
-        "slot": 5,
-        "price": 10.87
-      },
-      {
-        "slot": 6,
-        "price": 11.14
-      },
-      {
-        "slot": 7,
-        "price": 11.57
-      },
-      {
-        "slot": 8,
-        "price": 12.14
-      },
-      {
-        "slot": 9,
-        "price": 12.25
-      },
-      {
         "slot": 10,
-        "price": 12.3
+        "price": 11.77
+      },
+      {
+        "slot": 11,
+        "price": 12.51
+      },
+      {
+        "slot": 12,
+        "price": 12.56
+      },
+      {
+        "slot": 13,
+        "price": 10.86
+      },
+      {
+        "slot": 14,
+        "price": 9.91
+      },
+      {
+        "slot": 15,
+        "price": 9.97
+      },
+      {
+        "slot": 16,
+        "price": 10.68
+      },
+      {
+        "slot": 17,
+        "price": 10.01
       }
     ]
   },
   "cost_analysis": {
-    "predicted_cost_jpy": 465.3,
-    "baseline_cost_jpy": 470.6,
-    "savings_jpy": 5.3,
-    "savings_pct": 1.1,
-    "cvar_cost_jpy": 492.8,
-    "risk_adjusted_cost_jpy": 473.5
+    "predicted_cost_jpy": 441.4,
+    "baseline_cost_jpy": 475.0,
+    "savings_jpy": 33.5,
+    "savings_pct": 7.1,
+    "cvar_cost_jpy": 470.1,
+    "risk_adjusted_cost_jpy": 450.0
   },
-  "recommendation": "Run 'A100 GPU Training (x4)' starting in 1.5 hours to save ¥5 (1%) vs running now."
+  "recommendation": "Run 'A100 GPU Training (x4)' starting in 5.0 hours to save ¥34 (7%) vs running now."
 }
