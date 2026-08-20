@@ -3,31 +3,31 @@
   "strategies": {
     "aggressive": {
       "alpha": 0.0,
-      "start_hours_from_now": 0.0,
-      "predicted_cost_jpy": 642.7,
-      "cvar_cost_jpy": 682.1,
-      "savings_pct": 0.0
+      "start_hours_from_now": 24.0,
+      "predicted_cost_jpy": 636.1,
+      "cvar_cost_jpy": 680.8,
+      "savings_pct": 4.2
     },
     "balanced": {
       "alpha": 0.3,
-      "start_hours_from_now": 0.0,
-      "predicted_cost_jpy": 642.7,
-      "cvar_cost_jpy": 682.1,
-      "savings_pct": 0.0
+      "start_hours_from_now": 24.0,
+      "predicted_cost_jpy": 636.1,
+      "cvar_cost_jpy": 680.8,
+      "savings_pct": 4.2
     },
     "conservative": {
       "alpha": 0.7,
-      "start_hours_from_now": 0.0,
-      "predicted_cost_jpy": 642.7,
-      "cvar_cost_jpy": 682.1,
-      "savings_pct": 0.0
+      "start_hours_from_now": 24.0,
+      "predicted_cost_jpy": 636.1,
+      "cvar_cost_jpy": 680.8,
+      "savings_pct": 4.2
     },
     "max_safety": {
       "alpha": 1.0,
-      "start_hours_from_now": 0.0,
-      "predicted_cost_jpy": 642.7,
-      "cvar_cost_jpy": 682.1,
-      "savings_pct": 0.0
+      "start_hours_from_now": 24.0,
+      "predicted_cost_jpy": 636.1,
+      "cvar_cost_jpy": 680.8,
+      "savings_pct": 4.2
     }
   },
   "recommendation": "Use 'balanced' (α=0.3) for most workloads. Use 'aggressive' only if cost is the sole concern. Use 'conservative' for mission-critical jobs."
