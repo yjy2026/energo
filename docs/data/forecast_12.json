@@ -4,205 +4,205 @@
   "slot_duration_minutes": 30,
   "currency": "JPY/kWh",
   "summary": {
-    "avg_price": 15.66,
-    "min_price": 10.38,
-    "max_price": 18.15,
-    "avg_uncertainty": 1.98,
+    "avg_price": 16.7,
+    "min_price": 11.27,
+    "max_price": 18.34,
+    "avg_uncertainty": 2.25,
     "cheapest_hour_offset": 11.5,
-    "most_expensive_hour_offset": 7.0
+    "most_expensive_hour_offset": 5.0
   },
   "slots": [
     {
       "slot": 0,
       "hour_offset": 0.0,
-      "price_mean": 16.87,
-      "price_std": 2.07,
-      "ci_90_lower": 13.47,
-      "ci_90_upper": 20.27
+      "price_mean": 17.6,
+      "price_std": 2.31,
+      "ci_90_lower": 13.79,
+      "ci_90_upper": 21.4
     },
     {
       "slot": 1,
       "hour_offset": 0.5,
-      "price_mean": 16.75,
-      "price_std": 2.04,
-      "ci_90_lower": 13.4,
-      "ci_90_upper": 20.11
+      "price_mean": 17.52,
+      "price_std": 2.3,
+      "ci_90_lower": 13.74,
+      "ci_90_upper": 21.31
     },
     {
       "slot": 2,
       "hour_offset": 1.0,
-      "price_mean": 16.57,
-      "price_std": 1.99,
-      "ci_90_lower": 13.28,
-      "ci_90_upper": 19.85
+      "price_mean": 17.85,
+      "price_std": 2.37,
+      "ci_90_lower": 13.95,
+      "ci_90_upper": 21.74
     },
     {
       "slot": 3,
       "hour_offset": 1.5,
-      "price_mean": 16.61,
-      "price_std": 2.01,
-      "ci_90_lower": 13.32,
-      "ci_90_upper": 19.91
+      "price_mean": 17.64,
+      "price_std": 2.33,
+      "ci_90_lower": 13.8,
+      "ci_90_upper": 21.48
     },
     {
       "slot": 4,
       "hour_offset": 2.0,
-      "price_mean": 16.52,
-      "price_std": 1.98,
-      "ci_90_lower": 13.26,
-      "ci_90_upper": 19.79
+      "price_mean": 17.65,
+      "price_std": 2.34,
+      "ci_90_lower": 13.8,
+      "ci_90_upper": 21.5
     },
     {
       "slot": 5,
       "hour_offset": 2.5,
-      "price_mean": 16.5,
-      "price_std": 1.98,
-      "ci_90_lower": 13.24,
-      "ci_90_upper": 19.76
+      "price_mean": 17.6,
+      "price_std": 2.34,
+      "ci_90_lower": 13.75,
+      "ci_90_upper": 21.44
     },
     {
       "slot": 6,
       "hour_offset": 3.0,
-      "price_mean": 16.56,
-      "price_std": 1.99,
-      "ci_90_lower": 13.28,
-      "ci_90_upper": 19.84
+      "price_mean": 17.67,
+      "price_std": 2.36,
+      "ci_90_lower": 13.79,
+      "ci_90_upper": 21.55
     },
     {
       "slot": 7,
       "hour_offset": 3.5,
-      "price_mean": 16.89,
-      "price_std": 2.07,
-      "ci_90_lower": 13.49,
-      "ci_90_upper": 20.29
+      "price_mean": 17.91,
+      "price_std": 2.41,
+      "ci_90_lower": 13.94,
+      "ci_90_upper": 21.89
     },
     {
       "slot": 8,
       "hour_offset": 4.0,
-      "price_mean": 17.02,
-      "price_std": 2.09,
-      "ci_90_lower": 13.57,
-      "ci_90_upper": 20.46
+      "price_mean": 18.09,
+      "price_std": 2.46,
+      "ci_90_lower": 14.05,
+      "ci_90_upper": 22.13
     },
     {
       "slot": 9,
       "hour_offset": 4.5,
-      "price_mean": 17.22,
-      "price_std": 2.15,
-      "ci_90_lower": 13.69,
-      "ci_90_upper": 20.75
+      "price_mean": 18.28,
+      "price_std": 2.5,
+      "ci_90_lower": 14.16,
+      "ci_90_upper": 22.39
     },
     {
       "slot": 10,
       "hour_offset": 5.0,
-      "price_mean": 17.34,
-      "price_std": 2.17,
-      "ci_90_lower": 13.76,
-      "ci_90_upper": 20.92
+      "price_mean": 18.34,
+      "price_std": 2.52,
+      "ci_90_lower": 14.2,
+      "ci_90_upper": 22.49
     },
     {
       "slot": 11,
       "hour_offset": 5.5,
-      "price_mean": 17.61,
-      "price_std": 2.25,
-      "ci_90_lower": 13.92,
-      "ci_90_upper": 21.31
+      "price_mean": 18.26,
+      "price_std": 2.52,
+      "ci_90_lower": 14.12,
+      "ci_90_upper": 22.4
     },
     {
       "slot": 12,
       "hour_offset": 6.0,
-      "price_mean": 17.78,
-      "price_std": 2.29,
-      "ci_90_lower": 14.01,
-      "ci_90_upper": 21.56
+      "price_mean": 18.15,
+      "price_std": 2.5,
+      "ci_90_lower": 14.04,
+      "ci_90_upper": 22.27
     },
     {
       "slot": 13,
       "hour_offset": 6.5,
-      "price_mean": 17.89,
-      "price_std": 2.34,
-      "ci_90_lower": 14.04,
-      "ci_90_upper": 21.75
+      "price_mean": 18.05,
+      "price_std": 2.49,
+      "ci_90_lower": 13.95,
+      "ci_90_upper": 22.14
     },
     {
       "slot": 14,
       "hour_offset": 7.0,
-      "price_mean": 18.15,
-      "price_std": 2.43,
-      "ci_90_lower": 14.15,
-      "ci_90_upper": 22.14
+      "price_mean": 18.06,
+      "price_std": 2.5,
+      "ci_90_lower": 13.95,
+      "ci_90_upper": 22.17
     },
     {
       "slot": 15,
       "hour_offset": 7.5,
-      "price_mean": 17.9,
-      "price_std": 2.43,
-      "ci_90_lower": 13.9,
-      "ci_90_upper": 21.9
+      "price_mean": 17.91,
+      "price_std": 2.48,
+      "ci_90_lower": 13.84,
+      "ci_90_upper": 21.99
     },
     {
       "slot": 16,
       "hour_offset": 8.0,
-      "price_mean": 17.36,
-      "price_std": 2.38,
-      "ci_90_lower": 13.45,
-      "ci_90_upper": 21.27
+      "price_mean": 17.63,
+      "price_std": 2.43,
+      "ci_90_lower": 13.64,
+      "ci_90_upper": 21.62
     },
     {
       "slot": 17,
       "hour_offset": 8.5,
-      "price_mean": 15.38,
-      "price_std": 2.05,
-      "ci_90_lower": 12.01,
-      "ci_90_upper": 18.76
+      "price_mean": 16.45,
+      "price_std": 2.21,
+      "ci_90_lower": 12.82,
+      "ci_90_upper": 20.09
     },
     {
       "slot": 18,
       "hour_offset": 9.0,
-      "price_mean": 12.97,
-      "price_std": 1.66,
-      "ci_90_lower": 10.23,
-      "ci_90_upper": 15.71
+      "price_mean": 16.12,
+      "price_std": 2.15,
+      "ci_90_lower": 12.59,
+      "ci_90_upper": 19.66
     },
     {
       "slot": 19,
       "hour_offset": 9.5,
-      "price_mean": 12.38,
-      "price_std": 1.6,
-      "ci_90_lower": 9.75,
-      "ci_90_upper": 15.01
+      "price_mean": 15.64,
+      "price_std": 2.07,
+      "ci_90_lower": 12.24,
+      "ci_90_upper": 19.04
     },
     {
       "slot": 20,
       "hour_offset": 10.0,
-      "price_mean": 11.41,
-      "price_std": 1.45,
-      "ci_90_lower": 9.02,
-      "ci_90_upper": 13.8
+      "price_mean": 13.33,
+      "price_std": 1.7,
+      "ci_90_lower": 10.54,
+      "ci_90_upper": 16.12
     },
     {
       "slot": 21,
       "hour_offset": 10.5,
-      "price_mean": 10.93,
-      "price_std": 1.39,
-      "ci_90_lower": 8.65,
-      "ci_90_upper": 13.21
+      "price_mean": 12.36,
+      "price_std": 1.6,
+      "ci_90_lower": 9.73,
+      "ci_90_upper": 14.99
     },
     {
       "slot": 22,
       "hour_offset": 11.0,
-      "price_mean": 10.84,
-      "price_std": 1.37,
-      "ci_90_lower": 8.58,
-      "ci_90_upper": 13.09
+      "price_mean": 11.46,
+      "price_std": 1.56,
+      "ci_90_lower": 8.89,
+      "ci_90_upper": 14.04
     },
     {
       "slot": 23,
       "hour_offset": 11.5,
-      "price_mean": 10.38,
-      "price_std": 1.31,
-      "ci_90_lower": 8.22,
-      "ci_90_upper": 12.54
+      "price_mean": 11.27,
+      "price_std": 1.63,
+      "ci_90_lower": 8.6,
+      "ci_90_upper": 13.95
     }
   ]
 }

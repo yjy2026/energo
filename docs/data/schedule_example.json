@@ -13,45 +13,45 @@
     "slot_prices": [
       {
         "slot": 20,
-        "price": 11.41
+        "price": 13.33
       },
       {
         "slot": 21,
-        "price": 10.93
+        "price": 12.36
       },
       {
         "slot": 22,
-        "price": 10.84
+        "price": 11.46
       },
       {
         "slot": 23,
-        "price": 10.38
+        "price": 11.27
       },
       {
         "slot": 24,
-        "price": 10.4
+        "price": 11.34
       },
       {
         "slot": 25,
-        "price": 10.24
+        "price": 11.46
       },
       {
         "slot": 26,
-        "price": 9.6
+        "price": 11.6
       },
       {
         "slot": 27,
-        "price": 10.35
+        "price": 12.29
       }
     ]
   },
   "cost_analysis": {
-    "predicted_cost_jpy": 420.7,
-    "baseline_cost_jpy": 666.4,
-    "savings_jpy": 245.7,
-    "savings_pct": 36.9,
-    "cvar_cost_jpy": 460.0,
-    "risk_adjusted_cost_jpy": 432.5
+    "predicted_cost_jpy": 475.6,
+    "baseline_cost_jpy": 707.2,
+    "savings_jpy": 231.7,
+    "savings_pct": 32.8,
+    "cvar_cost_jpy": 525.0,
+    "risk_adjusted_cost_jpy": 490.4
   },
-  "recommendation": "Run 'A100 GPU Training (x4)' starting in 10.0 hours to save ¥246 (37%) vs running now."
+  "recommendation": "Run 'A100 GPU Training (x4)' starting in 10.0 hours to save ¥232 (33%) vs running now."
 }
