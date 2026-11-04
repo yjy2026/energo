@@ -1,21 +1,21 @@
 {
   "market": "JEPX",
-  "data_points": 290976,
-  "latest_price": 22.51,
+  "data_points": 291024,
+  "latest_price": 25.39,
   "today": {
-    "avg": 26.6,
-    "min": 10.19,
-    "max": 37.18,
-    "std": 7.17
+    "avg": 30.81,
+    "min": 20.76,
+    "max": 37.6,
+    "std": 4.65
   },
   "yesterday": {
-    "avg": 21.37,
-    "min": 1.01,
-    "max": 31.61
+    "avg": 26.6,
+    "min": 10.19,
+    "max": 37.18
   },
   "week": {
-    "avg": 24.58,
-    "volatility": 10.16,
+    "avg": 25.16,
+    "volatility": 10.09,
     "trend": "rising"
   }
 }
